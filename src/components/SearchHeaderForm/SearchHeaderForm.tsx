@@ -3,7 +3,7 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import ButtonComponent from "~/components/ButtonComponent/ButtonComponent";
 
 const SearchHeaderForm = () => {
   return (
@@ -34,7 +34,7 @@ const SearchHeaderForm = () => {
         inputProps={{ "aria-label": "search google maps" }}
       />
       <Divider sx={{ height: 28, ml: 0.5 }} orientation="vertical" />
-      <Button
+      <ButtonComponent
         color="primary"
         sx={{
           fontSize: "14px",
@@ -42,7 +42,7 @@ const SearchHeaderForm = () => {
         }}
       >
         Tìm kiếm
-      </Button>
+      </ButtonComponent>
     </Paper>
   );
 };
