@@ -1,5 +1,4 @@
 const HomePage = () => {
-  console.log(111)
   return (
     <div>
       123
