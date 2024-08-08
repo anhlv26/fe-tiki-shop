@@ -1,0 +1,32 @@
+.slick-prev,
+.slick-next {
+  background-color: #fff;  // Màu nền của nút
+  border-radius: 50%;      // Bo tròn nút
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);  // Bóng đổ
+  z-index: 1;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  font-size: 20px;
+  color: #000;  // Màu của mũi tên
+  opacity: 1;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: #000;  // Màu nền khi hover
+}
+
+.slick-prev {
+  left: -50px;  // Điều chỉnh vị trí của nút prev
+}
+
+.slick-next {
+  right: -50px;  // Điều chỉnh vị trí của nút next
+}

@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import React from "react";
-import HeaderComponent from "../HeaderComponent/HeaderComponent";
+import HeaderComponent from "~/components/HeaderComponent/HeaderComponent";
 
 const DefaultComponent: React.FC<{ children: React.ReactNode }> = ({
   children,
