@@ -37,7 +37,6 @@ const SearchHeaderForm = () => {
       <ButtonComponent
         color="primary"
         sx={{
-          fontSize: "14px",
           height: "100%",
         }}
       >

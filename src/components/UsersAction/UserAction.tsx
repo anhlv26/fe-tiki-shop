@@ -8,7 +8,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const UserAction = () => {
   return (
-    <Box sx={{ display: "flex", width:"100%" }}>
+    <Box sx={{ display: "flex", width:"100%", justifyContent:"flex-end" }}>
       <Button
         sx={{
           borderRadius: "6px",
@@ -20,7 +20,7 @@ const UserAction = () => {
       </Button>
       <Button
         sx={{ borderRadius: "6px", height: "40px" }}
-        startIcon={<EmojiEmotionsIcon />}
+        startIcon={<EmojiEmotionsIcon sx={{ fontSize: "30px" }} />}
       >
         Tài khoản
       </Button>
