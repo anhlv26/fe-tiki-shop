@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import React from "react";
 import HeaderComponent from "~/components/HeaderComponent/HeaderComponent";
 
-const DefaultComponent: React.FC<{ children: React.ReactNode }> = ({
+const HeaderOnlyLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   return (
@@ -13,4 +13,4 @@ const DefaultComponent: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-export default DefaultComponent;
+export default HeaderOnlyLayout;
