@@ -12,11 +12,12 @@ const Navbar = () => {
         top: "0",
         overflowY: "scroll",
         scrollbarWidth: "none",
-        maxHeight: "100vh"
+        maxHeight: "100vh",
       }}
     >
       {items.map((item, index) => (
         <Box
+          key={index}
           sx={{
             display: "flex",
             width: "100%",
