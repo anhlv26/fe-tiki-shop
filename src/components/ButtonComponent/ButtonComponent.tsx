@@ -1,34 +1,41 @@
 import React, { ReactNode } from "react";
 import Button from "@mui/material/Button";
-import { ButtonProps } from "@mui/material";
+import { Box, ButtonProps } from "@mui/material";
 import { styled } from "@mui/system";
 
 interface ButtonComponentProps extends ButtonProps {
   backgroundColor?: string;
+  border?: string;
   colorCustom?: string;
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
-  children?: ReactNode;
-  height?: string;
-  padding?: string;
-  borderRadius?: string;
+  textButton?: string;
+  onClick?: () => void;
 }
 
 const StyledButton = styled(Button)<ButtonComponentProps>(
-  ({ backgroundColor, colorCustom }) => ({
-    backgroundColor: backgroundColor || "primary",
-    color: colorCustom || "primary",
+  ({ backgroundColor, colorCustom, fullWidth, border }) => ({
+    backgroundColor: backgroundColor || "transperent",
+    border: border || "1px solid #556CD6",
+    color: colorCustom || "#556CD6",
     padding: "10px 20px",
     borderRadius: "6px",
     height: "40px",
+    width: fullWidth ? "100%" : "",
+    marginTop: "12px",
   })
 );
 
-const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
-  const { backgroundColor, color, padding, borderRadius, height, ...rest } =
-    props;
-
-  return <StyledButton {...rest}>{props.children}</StyledButton>;
+const ButtonComponent: React.FC<ButtonComponentProps> = ({
+  textButton,
+  onClick,
+  ...rest
+}) => {
+  return (
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <StyledButton {...rest} onClick={onClick}>
+        {textButton}
+      </StyledButton>
+    </Box>
+  );
 };
 
 export default ButtonComponent;
