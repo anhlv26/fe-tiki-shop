@@ -1,7 +1,6 @@
 import { Box, Input, Modal, Typography } from "@mui/material";
 import React, { useState } from "react";
-import ButtonComponent from "../ButtonComponent/ButtonComponent";
-import CloseIcon from "@mui/icons-material/Close";
+import ButtonComponent from "~/components/ButtonComponent/ButtonComponent";
 
 interface ModalSignupProps {
   open: boolean;
@@ -11,7 +10,7 @@ interface ModalSignupProps {
 const ModalSignup: React.FC<ModalSignupProps> = ({ open, handleClose }) => {
   const [hidden, setHidden] = useState(true);
 
-  const handleClickHidden = () => {
+  const handleHiddenPassword = () => {
     setHidden(!hidden);
   };
 
@@ -66,7 +65,7 @@ const ModalSignup: React.FC<ModalSignupProps> = ({ open, handleClose }) => {
               }}
             />
             <Typography
-              onClick={handleClickHidden}
+              onClick={handleHiddenPassword}
               component="span"
               sx={{
                 position: "absolute",

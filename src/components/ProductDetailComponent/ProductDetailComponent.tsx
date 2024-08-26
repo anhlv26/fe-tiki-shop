@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import ProductDetailTitle from "~/components/ProductDetailTitle/ProductDetailTitle";
-import ProductDetailRight from "../ProductDetailRight/ProductDetailRight";
-import ProductDetailContent from "../ProductDetailContent/ProductDetailContent";
+import ProductDetailRight from "~/components/ProductDetailRight/ProductDetailRight";
+import ProductDetailContent from "~/components/ProductDetailContent/ProductDetailContent";
 
 const ProductDetailComponent = () => {
   return (

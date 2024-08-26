@@ -9,7 +9,7 @@ import StarIcon from "@mui/icons-material/Star";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-import ButtonComponent from "../ButtonComponent/ButtonComponent";
+import ButtonComponent from "~/components/ButtonComponent/ButtonComponent";
 import { useState } from "react";
 
 const ProductDetailRight = () => {

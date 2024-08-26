@@ -6,7 +6,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React from "react";
-import ModalSignup from "../ModalSignup/ModalSignup";
+import ModalSignup from "~/components/ModalSignup/ModalSignup";
 
 const UserAction = () => {
   const [open, setOpen] = React.useState(false);
