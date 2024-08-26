@@ -7,7 +7,6 @@ const HomePage = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <ContainerComponent />
-      {/* <Footer /> */}
     </Box>
   );
 };

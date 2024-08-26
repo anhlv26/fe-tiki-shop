@@ -5,10 +5,17 @@ import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import React from "react";
+import ModalSignup from "../ModalSignup/ModalSignup";
 
 const UserAction = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+
   return (
-    <Box sx={{ display: "flex", width:"100%", justifyContent:"flex-end" }}>
+    <Box sx={{ display: "flex", width: "100%", justifyContent: "flex-end" }}>
       <Button
         sx={{
           borderRadius: "6px",
@@ -19,6 +26,7 @@ const UserAction = () => {
         Trang chủ
       </Button>
       <Button
+        onClick={handleOpen}
         sx={{ borderRadius: "6px", height: "40px" }}
         startIcon={<EmojiEmotionsIcon sx={{ fontSize: "30px" }} />}
       >
@@ -32,7 +40,7 @@ const UserAction = () => {
           display: "flex",
           paddingLeft: "6px",
           minWidth: 0,
-        //   justifyContent: "flex-start",
+          //   justifyContent: "flex-start",
         }}
       >
         <Badge
@@ -49,6 +57,7 @@ const UserAction = () => {
           <ShoppingCartIcon />
         </Badge>
       </Button>
+      <ModalSignup open={open} handleClose={handleClose} />
     </Box>
   );
 };

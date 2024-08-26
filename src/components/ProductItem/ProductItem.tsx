@@ -28,6 +28,7 @@ const ProductItem: React.FC<ProdcuctItem> = ({ image, name, price }) => {
         borderTopRightRadius: "8px",
         borderTopLeftRadius: "8px",
         overflow: "hidden",
+        cursor: "pointer",
         border: "1px solid rgb(235, 235, 240)",
         "&:hover": {
           boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 20px",
