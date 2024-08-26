@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import ProductItem from "../ProductItem/ProductItem";
+import ProductItem from "~/components/ProductItem/ProductItem";
 
 const ProductList = () => {
   const dataProds = [
@@ -118,7 +118,6 @@ const ProductList = () => {
             md={2}
             sx={{
               height: "390px",
-              cursor: "pointer",
               border: "none",
             }}
           >

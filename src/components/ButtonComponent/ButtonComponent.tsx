@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import { Box, ButtonProps } from "@mui/material";
 import { styled } from "@mui/system";

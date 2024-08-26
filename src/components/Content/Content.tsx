@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import SliderComponent from "~/components/SliderComponent/SliderComponent";
 import ProductList from "~/components/ProductList/ProductList";
-import ButtonComponent from "../ButtonComponent/ButtonComponent";
+import ButtonComponent from "~/components/ButtonComponent/ButtonComponent";
 
 const Content = () => {
   return (
