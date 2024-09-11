@@ -51,7 +51,6 @@ const HeaderComponent = () => {
             <Grid
               item
               md={8}
-              // direction="row"
               sx={{
                 height: "100%",
                 alignItems: "center",

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Divider from "@mui/material/Divider";
 import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
@@ -5,15 +6,27 @@ import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import React from "react";
 import ModalSignup from "~/components/ModalSignup/ModalSignup";
 
 const UserAction = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(false);
+  const [isSignup, setIsSignup] = useState(true);
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const switchToSignup = () => {
+    setIsSignup(true);
+  };
+
+  const switchToSignin = () => {
+    setIsSignup(false);
+  };
   return (
     <Box sx={{ display: "flex", width: "100%", justifyContent: "flex-end" }}>
       <Button
@@ -40,7 +53,6 @@ const UserAction = () => {
           display: "flex",
           paddingLeft: "6px",
           minWidth: 0,
-          //   justifyContent: "flex-start",
         }}
       >
         <Badge
@@ -57,7 +69,13 @@ const UserAction = () => {
           <ShoppingCartIcon />
         </Badge>
       </Button>
-      <ModalSignup open={open} handleClose={handleClose} />
+      <ModalSignup
+        isSignup={isSignup}
+        open={open}
+        handleClose={handleClose}
+        switchToSignup={switchToSignup}
+        switchToSignin={switchToSignin}
+      />
     </Box>
   );
 };

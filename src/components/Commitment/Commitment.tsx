@@ -1,3 +1,4 @@
+import styles from "~/asset/styles/Commitment.module.scss";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import VerifiedIcon from "@mui/icons-material/Verified";
@@ -10,28 +11,15 @@ import TextIntro from "~/components/TextIntro/TextIntro";
 
 const Commitment = () => {
   return (
-    <Box
-      sx={{
-        height: "100%",
-        display: "flex",
-        cursor: "pointer",
-        padding: "10px 72px",
-      }}
-    >
-      <Box sx={{ display: "flex", alignItems: "end" }}>
+    <Box className={styles.commitment}>
+      <Box className={styles.commitment__section}>
         <TextIntro sx={{ mr: "20px" }}>Cam Kết</TextIntro>
         <Box sx={{ display: "flex" }}>
           <VerifiedIcon
-            sx={{ color: "#0D48A6", fontSize: "18px", mr: "8px" }}
+            className={styles.commitment__icon}
+            sx={{ fontSize: "18px" }}
           />
-          <Typography
-            sx={{
-              display: "flex",
-              fontSize: "12px",
-              fontWeight: "500",
-              alignItems: "end",
-            }}
-          >
+          <Typography className={styles.commitment__text} sx={{fontSize:"12px"}}>
             100% hàng thật
           </Typography>
         </Box>
@@ -40,19 +28,13 @@ const Commitment = () => {
         sx={{ height: "auto", margin: "0 16px" }}
         orientation="vertical"
       />
-      <Box sx={{ display: "flex", alignItems: "end" }}>
+      <Box className={styles.commitment__section}>
         <Box sx={{ display: "flex" }}>
           <CurrencyExchangeIcon
-            sx={{ color: "#0D48A6", fontSize: "18px", mr: "8px" }}
+            className={styles.commitment__icon}
+            sx={{ fontSize: "18px" }}
           />
-          <Typography
-            sx={{
-              display: "flex",
-              fontSize: "12px",
-              fontWeight: "500",
-              alignItems: "end",
-            }}
-          >
+          <Typography className={styles.commitment__text} sx={{fontSize:"12px"}}>
             Hoàn 200% nếu hàng giả
           </Typography>
         </Box>
@@ -61,19 +43,13 @@ const Commitment = () => {
         sx={{ height: "auto", margin: "0 16px" }}
         orientation="vertical"
       />
-      <Box sx={{ display: "flex", alignItems: "end" }}>
+      <Box className={styles.commitment__section}>
         <Box sx={{ display: "flex" }}>
           <AssignmentReturnIcon
-            sx={{ color: "#0D48A6", fontSize: "18px", mr: "8px" }}
+            className={styles.commitment__icon}
+            sx={{ fontSize: "18px" }}
           />
-          <Typography
-            sx={{
-              display: "flex",
-              fontSize: "12px",
-              fontWeight: "500",
-              alignItems: "end",
-            }}
-          >
+          <Typography className={styles.commitment__text} sx={{fontSize:"12px"}}>
             30 ngày đổi trả
           </Typography>
         </Box>
@@ -82,19 +58,13 @@ const Commitment = () => {
         sx={{ height: "auto", margin: "0 16px" }}
         orientation="vertical"
       />
-      <Box sx={{ display: "flex", alignItems: "end" }}>
+      <Box className={styles.commitment__section}>
         <Box sx={{ display: "flex" }}>
           <DeliveryDiningIcon
-            sx={{ color: "#0D48A6", fontSize: "18px", mr: "8px" }}
+            className={styles.commitment__icon}
+            sx={{ fontSize: "18px" }}
           />
-          <Typography
-            sx={{
-              display: "flex",
-              fontSize: "12px",
-              fontWeight: "500",
-              alignItems: "end",
-            }}
-          >
+          <Typography className={styles.commitment__text} sx={{fontSize:"12px"}}>
             Giao nhanh 2h
           </Typography>
         </Box>
@@ -103,19 +73,13 @@ const Commitment = () => {
         sx={{ height: "auto", margin: "0 16px" }}
         orientation="vertical"
       />
-      <Box sx={{ display: "flex", alignItems: "end" }}>
+      <Box className={styles.commitment__section}>
         <Box sx={{ display: "flex" }}>
           <LocalOfferIcon
-            sx={{ color: "#0D48A6", fontSize: "18px", mr: "8px" }}
+            className={styles.commitment__icon}
+            sx={{ fontSize: "18px" }}
           />
-          <Typography
-            sx={{
-              display: "flex",
-              fontSize: "12px",
-              fontWeight: "500",
-              alignItems: "end",
-            }}
-          >
+          <Typography className={styles.commitment__text} sx={{fontSize:"12px"}}>
             Giá siêu rẻ
           </Typography>
         </Box>

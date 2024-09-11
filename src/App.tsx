@@ -2,22 +2,21 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import { routes } from "~/routes";
 import DefaultLayout from "~/components/DefaultLayout/DefaultLayout";
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 import { Fragment } from "react/jsx-runtime";
 import HeaderOnlyLayout from "~/components/HeaderOnlyLayout/HeaderOnlyLayout";
 import FooterOnlyLayout from "~/components/FooterOnlyLayout/FooterOnlyLayout";
-import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 function App() {
-  const fetchApi = async () => {
-    const res = await axios.get(
-      `http://localhost:3000/api/product/get-all-products`
-    );
-    console.log("res", res);
-  };
+  // const fetchApi = async () => {
+  //   const res = await axios.get(
+  //     `http://localhost:3000/api/product/get-all-products`
+  //   );
+  //   console.log("res", res);
+  // };
 
-  const query = useQuery({ queryKey: ["todos"], queryFn: fetchApi });
+  // const query = useQuery({ queryKey: ["todos"], queryFn: fetchApi });
   return (
     <Box>
       <Router>
