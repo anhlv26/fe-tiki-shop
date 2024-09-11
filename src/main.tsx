@@ -1,8 +1,8 @@
+import theme from "~/theme";
 import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { ThemeProvider } from "@emotion/react";
-import theme from "~/theme";
 import { store } from "~/redux/store";
 import App from "~/App";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

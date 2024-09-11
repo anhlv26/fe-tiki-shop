@@ -1,0 +1,23 @@
+.commitment {
+  height: 100%;
+  display: flex;
+  cursor: pointer;
+  padding: 10px 72px;
+
+  &__section {
+    display: flex;
+    align-items: end;
+  }
+
+  &__icon {
+    color: #0d48a6;
+    margin-right: 8px;
+  }
+
+  &__text {
+    display: flex;
+    font-weight: 500;
+    align-items: end;
+  }
+
+}

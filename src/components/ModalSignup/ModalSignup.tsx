@@ -1,17 +1,80 @@
 import { Box, Input, Modal, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useFormik } from "formik";
 import ButtonComponent from "~/components/ButtonComponent/ButtonComponent";
-
+import { SignupSchema, SigninSchema } from "~/validations/validationSchema";
+import * as UserService from "~/services/UserService";
+import { User } from "~/types/User";
+import { useMutationHook } from "~/hooks/useMutationHook";
 interface ModalSignupProps {
   open: boolean;
   handleClose: () => void;
+  switchToSignin: () => void;
+  switchToSignup: () => void;
+  isSignup: boolean;
 }
 
-const ModalSignup: React.FC<ModalSignupProps> = ({ open, handleClose }) => {
-  const [hidden, setHidden] = useState(true);
+const ModalSignup: React.FC<ModalSignupProps> = ({
+  open,
+  handleClose,
+  switchToSignin,
+  switchToSignup,
+  isSignup,
+}) => {
+  const [hiddenPassword, setHiddenPassword] = useState(true);
+  const [hiddenConfirmPassword, setHiddenConfirmPassword] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
+
+  const mutationLogin = useMutationHook((data: User) => {
+    return UserService.loginUser(data);
+  });
+
+  const mutationSignUp = useMutationHook((data: User) => {
+    return UserService.signUpUser(data);
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: isSignup ? SignupSchema : SigninSchema,
+    onSubmit: (values) => {
+      if (isSignup) {
+        mutationSignUp.mutate(values, {
+          onSuccess: (data) => {
+            // console.log("API signup call successful", data);
+          },
+          onError: (error) => {
+            // console.error("API signup call failed", error);
+          },
+        });
+      } else {
+        console.log("login");
+
+        const { confirmPassword, ...loginValues } = values;
+        console.log("loginValues", loginValues);
+        mutationLogin.mutate(loginValues, {
+          onSuccess: (data) => {
+            // console.log("API signin call successful", data);
+          },
+          onError: (error) => {
+            // console.error("API signin call failed", error);
+          },
+        });
+      }
+    },
+    validateOnChange: false,
+    validateOnBlur: true,
+  });
 
   const handleHiddenPassword = () => {
-    setHidden(!hidden);
+    setHiddenPassword(!hiddenPassword);
+  };
+
+  const handleHiddenConfirmPassword = () => {
+    setHiddenConfirmPassword(!hiddenConfirmPassword);
   };
 
   return (
@@ -42,58 +105,142 @@ const ModalSignup: React.FC<ModalSignupProps> = ({ open, handleClose }) => {
           <Typography sx={{ mb: "20px" }}>
             Đăng nhập hoặc Tạo tài khoản
           </Typography>
-          <Input
-            placeholder="abc@email.com"
-            disableUnderline
-            sx={{
-              borderBottom: "1px solid rgb(224, 224, 224)",
-              pb: "6px",
-              marginBottom: "16px",
-            }}
-          />
-
-          <Box sx={{ position: "relative" }}>
+          <form onSubmit={formik.handleSubmit}>
             <Input
-              placeholder="Mật khẩu"
-              type={hidden ? "password" : "text"}
+              name="email"
+              placeholder="abc@email.com"
               disableUnderline
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={(e) => {
+                setIsFocused(false);
+                formik.handleBlur(e);
+              }}
+              onFocus={() => setIsFocused(true)} // Khi focus vào input
               sx={{
                 borderBottom: "1px solid rgb(224, 224, 224)",
                 pb: "6px",
-                marginBottom: "16px",
+                marginTop: "16px",
                 width: "100%",
               }}
             />
-            <Typography
-              onClick={handleHiddenPassword}
-              component="span"
-              sx={{
-                position: "absolute",
-                top: "5px",
-                right: "0",
-                cursor: "pointer",
-                color: "rgb(13, 92, 182)",
-              }}
-            >
-              {hidden ? "Hiện" : "Ẩn"}
-            </Typography>
-          </Box>
+            {!isFocused && formik.touched.email && formik.errors.email ? (
+              <Typography sx={{ color: "red" }}>
+                {formik.errors.email}
+              </Typography>
+            ) : null}
 
-          <ButtonComponent
-            fullWidth
-            textButton="Đăng nhập"
-            sx={{
-              bgcolor: "rgb(255, 66, 78)",
-              color: "#fff",
-              border: "none",
-              fontSize: "16px",
-              mb: "20px",
-              "&:hover": {
-                bgcolor: "rgb(255, 66, 78)",
-                color: "#fff",
-              },
-            }}
-          />
+            <Box sx={{ position: "relative" }}>
+              <Input
+                name="password"
+                placeholder="Mật khẩu"
+                type={hiddenPassword ? "password" : "text"}
+                disableUnderline
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                sx={{
+                  borderBottom: "1px solid rgb(224, 224, 224)",
+                  pb: "6px",
+                  marginTop: "16px",
+                  width: "100%",
+                }}
+              />
+              <Typography
+                onClick={handleHiddenPassword}
+                component="span"
+                sx={{
+                  position: "absolute",
+                  bottom: "10px",
+                  right: "0",
+                  cursor: "pointer",
+                  color: "rgb(13, 92, 182)",
+                }}
+              >
+                {hiddenPassword ? "Hiện" : "Ẩn"}
+              </Typography>
+            </Box>
+            {formik.touched.password && formik.errors.password ? (
+              <Typography sx={{ color: "red" }}>
+                {formik.errors.password}
+              </Typography>
+            ) : null}
+
+            {isSignup && (
+              <Box sx={{ position: "relative" }}>
+                <Input
+                  name="confirmPassword"
+                  placeholder="Nhập lại khẩu"
+                  type={hiddenConfirmPassword ? "password" : "text"}
+                  disableUnderline
+                  value={formik.values.confirmPassword}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  sx={{
+                    borderBottom: "1px solid rgb(224, 224, 224)",
+                    pb: "6px",
+                    marginTop: "16px",
+                    width: "100%",
+                  }}
+                />
+                <Typography
+                  onClick={handleHiddenConfirmPassword}
+                  component="span"
+                  sx={{
+                    position: "absolute",
+                    bottom: "10px",
+                    right: "0",
+                    cursor: "pointer",
+                    color: "rgb(13, 92, 182)",
+                  }}
+                >
+                  {hiddenConfirmPassword ? "Hiện" : "Ẩn"}
+                </Typography>
+                {formik.touched.confirmPassword &&
+                formik.errors.confirmPassword ? (
+                    <Typography sx={{ color: "red" }}>
+                      {formik.errors.confirmPassword}
+                    </Typography>
+                  ) : null}
+              </Box>
+            )}
+
+            {isSignup ? (
+              <ButtonComponent
+                fullWidth
+                textButton="Đăng ký"
+                type="submit"
+                sx={{
+                  bgcolor: "rgb(255, 66, 78)",
+                  color: "#fff",
+                  border: "none",
+                  fontSize: "16px",
+                  mb: "20px",
+                  "&:hover": {
+                    bgcolor: "rgb(255, 66, 78)",
+                    color: "#fff",
+                  },
+                }}
+              />
+            ) : (
+              <ButtonComponent
+                fullWidth
+                textButton="Đăng nhập"
+                type="submit"
+                sx={{
+                  bgcolor: "rgb(255, 66, 78)",
+                  color: "#fff",
+                  border: "none",
+                  fontSize: "16px",
+                  mb: "20px",
+                  "&:hover": {
+                    bgcolor: "rgb(255, 66, 78)",
+                    color: "#fff",
+                  },
+                }}
+              />
+            )}
+          </form>
           <Typography
             sx={{
               fontSize: "13px",
@@ -103,21 +250,41 @@ const ModalSignup: React.FC<ModalSignupProps> = ({ open, handleClose }) => {
           >
             Quên mật khẩu
           </Typography>
-          <Box sx={{ display: "flex", mt: "10px" }}>
-            <Typography sx={{ fontSize: "13px" }}>
-              Chưa có tài khoản?
-            </Typography>
-            <Typography
-              sx={{
-                ml: "10px",
-                fontSize: "13px",
-                color: "rgb(13, 92, 182)",
-                cursor: "pointer",
-              }}
-            >
-              Tạo tài khoản
-            </Typography>
-          </Box>
+          {isSignup ? (
+            <Box sx={{ display: "flex", mt: "10px" }}>
+              <Typography sx={{ fontSize: "13px" }}>
+                Đã có tài khoản?
+              </Typography>
+              <Typography
+                onClick={switchToSignin}
+                sx={{
+                  ml: "10px",
+                  fontSize: "13px",
+                  color: "rgb(13, 92, 182)",
+                  cursor: "pointer",
+                }}
+              >
+                Đăng nhập
+              </Typography>
+            </Box>
+          ) : (
+            <Box sx={{ display: "flex", mt: "10px" }}>
+              <Typography sx={{ fontSize: "13px" }}>
+                Chưa có tài khoản?
+              </Typography>
+              <Typography
+                onClick={switchToSignup}
+                sx={{
+                  ml: "10px",
+                  fontSize: "13px",
+                  color: "rgb(13, 92, 182)",
+                  cursor: "pointer",
+                }}
+              >
+                Đăng ký
+              </Typography>
+            </Box>
+          )}
         </Box>
         <Box
           sx={{
